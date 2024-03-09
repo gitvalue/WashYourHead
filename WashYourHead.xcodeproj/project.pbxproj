@@ -16,6 +16,10 @@
 		326170AC2B9CBC6E002595E0 /* WashPeriodSetUpOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326170AB2B9CBC6E002595E0 /* WashPeriodSetUpOnboardingView.swift */; };
 		326170AE2B9CBE5B002595E0 /* WashPeriodSetUpOnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326170AD2B9CBE5B002595E0 /* WashPeriodSetUpOnboardingViewModel.swift */; };
 		326170B12B9CC307002595E0 /* WashPeriodSetUpViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326170B02B9CC307002595E0 /* WashPeriodSetUpViewFactory.swift */; };
+		326170B42B9CFE38002595E0 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326170B32B9CFE38002595E0 /* DashboardView.swift */; };
+		326170BA2B9D07B9002595E0 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326170B92B9D07B9002595E0 /* HomeView.swift */; };
+		326170BC2B9D0804002595E0 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326170BB2B9D0804002595E0 /* CalendarView.swift */; };
+		326170BE2B9D082F002595E0 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326170BD2B9D082F002595E0 /* SettingsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +52,10 @@
 		326170AB2B9CBC6E002595E0 /* WashPeriodSetUpOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WashPeriodSetUpOnboardingView.swift; sourceTree = "<group>"; };
 		326170AD2B9CBE5B002595E0 /* WashPeriodSetUpOnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WashPeriodSetUpOnboardingViewModel.swift; sourceTree = "<group>"; };
 		326170B02B9CC307002595E0 /* WashPeriodSetUpViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WashPeriodSetUpViewFactory.swift; sourceTree = "<group>"; };
+		326170B32B9CFE38002595E0 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
+		326170B92B9D07B9002595E0 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		326170BB2B9D0804002595E0 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
+		326170BD2B9D082F002595E0 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +107,7 @@
 			isa = PBXGroup;
 			children = (
 				326170A72B9CB10E002595E0 /* App */,
+				326170B22B9CFE1E002595E0 /* Dashboard */,
 				326170A52B9CB0F3002595E0 /* Onboarding */,
 				3255EA562B9C927500CB00FC /* Preview Content */,
 				326170A62B9CB0F9002595E0 /* Resources */,
@@ -155,6 +164,49 @@
 				3255EA4E2B9C927400CB00FC /* WashYourHeadApp.swift */,
 			);
 			path = App;
+			sourceTree = "<group>";
+		};
+		326170B22B9CFE1E002595E0 /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				326170B82B9D07A8002595E0 /* Dashboard */,
+				326170B72B9D079F002595E0 /* Calendar */,
+				326170B52B9D0788002595E0 /* Home */,
+				326170B62B9D0792002595E0 /* Settings */,
+			);
+			path = Dashboard;
+			sourceTree = "<group>";
+		};
+		326170B52B9D0788002595E0 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				326170B92B9D07B9002595E0 /* HomeView.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		326170B62B9D0792002595E0 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				326170BD2B9D082F002595E0 /* SettingsView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		326170B72B9D079F002595E0 /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				326170BB2B9D0804002595E0 /* CalendarView.swift */,
+			);
+			path = Calendar;
+			sourceTree = "<group>";
+		};
+		326170B82B9D07A8002595E0 /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				326170B32B9CFE38002595E0 /* DashboardView.swift */,
+			);
+			path = Dashboard;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -288,7 +340,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				326170B12B9CC307002595E0 /* WashPeriodSetUpViewFactory.swift in Sources */,
+				326170BE2B9D082F002595E0 /* SettingsView.swift in Sources */,
+				326170BC2B9D0804002595E0 /* CalendarView.swift in Sources */,
 				326170AE2B9CBE5B002595E0 /* WashPeriodSetUpOnboardingViewModel.swift in Sources */,
+				326170B42B9CFE38002595E0 /* DashboardView.swift in Sources */,
+				326170BA2B9D07B9002595E0 /* HomeView.swift in Sources */,
 				3255EA4F2B9C927400CB00FC /* WashYourHeadApp.swift in Sources */,
 				326170AC2B9CBC6E002595E0 /* WashPeriodSetUpOnboardingView.swift in Sources */,
 			);

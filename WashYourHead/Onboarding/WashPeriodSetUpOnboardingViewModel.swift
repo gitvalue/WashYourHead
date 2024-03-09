@@ -5,7 +5,7 @@
 //  Created by Dmitry Volosach on 09/03/2024.
 //
 
-import Foundation
+import SwiftUI
 
 final class WashPeriodSetUpOnboardingViewModel: ObservableObject {
     
@@ -38,8 +38,8 @@ final class WashPeriodSetUpOnboardingViewModel: ObservableObject {
     
     // MARK: - Public
     
-    func onContinueButtonPress() {
-        // TODO:
+    func continueNavigationLinkDestination() -> some View {
+        return DashboardView()
     }
     
     // MARK: - Private
