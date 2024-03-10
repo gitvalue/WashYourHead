@@ -2,7 +2,7 @@
 //  SettingsView.swift
 //  WashYourHead
 //
-//  Created by Admin on 09/03/2024.
+//  Created by Dmitry Volosach on 09/03/2024.
 //
 
 import SwiftUI

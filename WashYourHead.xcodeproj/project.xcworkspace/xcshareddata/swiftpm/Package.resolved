@@ -1,12 +1,12 @@
 {
   "pins" : [
     {
-      "identity" : "swiftuicalendar",
+      "identity" : "snapkit",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/GGJJack/SwiftUICalendar",
+      "location" : "https://github.com/SnapKit/SnapKit.git",
       "state" : {
-        "revision" : "7ecd220909bc25529e35e2addb513a20abbfec82",
-        "version" : "0.1.14"
+        "revision" : "2842e6e84e82eb9a8dac0100ca90d9444b0307f4",
+        "version" : "5.7.1"
       }
     }
   ],
