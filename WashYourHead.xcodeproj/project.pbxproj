@@ -26,6 +26,9 @@
 		326170C82B9DE7F1002595E0 /* HomeViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326170C72B9DE7F1002595E0 /* HomeViewFactory.swift */; };
 		326170CA2B9DF7F1002595E0 /* HistoryEntryEntityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326170C92B9DF7F1002595E0 /* HistoryEntryEntityModel.swift */; };
 		326170CE2B9E1169002595E0 /* WashHistoryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326170CD2B9E1169002595E0 /* WashHistoryService.swift */; };
+		326170D32B9E1D2E002595E0 /* CalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326170D22B9E1D2E002595E0 /* CalendarViewModel.swift */; };
+		326170D52B9E1DB3002595E0 /* CalendarViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326170D42B9E1DB3002595E0 /* CalendarViewFactory.swift */; };
+		326170DD2B9E3832002595E0 /* SwiftUICalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 326170DC2B9E3832002595E0 /* SwiftUICalendar */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +71,9 @@
 		326170C72B9DE7F1002595E0 /* HomeViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewFactory.swift; sourceTree = "<group>"; };
 		326170C92B9DF7F1002595E0 /* HistoryEntryEntityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryEntryEntityModel.swift; sourceTree = "<group>"; };
 		326170CD2B9E1169002595E0 /* WashHistoryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WashHistoryService.swift; sourceTree = "<group>"; };
+		326170D22B9E1D2E002595E0 /* CalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewModel.swift; sourceTree = "<group>"; };
+		326170D42B9E1DB3002595E0 /* CalendarViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewFactory.swift; sourceTree = "<group>"; };
+		326170D92B9E2DEA002595E0 /* ElegantCalendar.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = ElegantCalendar.xcassets; path = ../../../SourcePackages/checkouts/ElegantCalendar/ElegantCalendar.xcassets; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +81,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				326170DD2B9E3832002595E0 /* SwiftUICalendar in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,6 +105,7 @@
 		3255EA422B9C927400CB00FC = {
 			isa = PBXGroup;
 			children = (
+				326170D92B9E2DEA002595E0 /* ElegantCalendar.xcassets */,
 				3255EA4D2B9C927400CB00FC /* WashYourHead */,
 				3255EA602B9C927500CB00FC /* WashYourHeadTests */,
 				3255EA6A2B9C927500CB00FC /* WashYourHeadUITests */,
@@ -212,6 +220,8 @@
 			isa = PBXGroup;
 			children = (
 				326170BB2B9D0804002595E0 /* CalendarView.swift */,
+				326170D42B9E1DB3002595E0 /* CalendarViewFactory.swift */,
+				326170D22B9E1D2E002595E0 /* CalendarViewModel.swift */,
 			);
 			path = Calendar;
 			sourceTree = "<group>";
@@ -275,6 +285,9 @@
 			dependencies = (
 			);
 			name = WashYourHead;
+			packageProductDependencies = (
+				326170DC2B9E3832002595E0 /* SwiftUICalendar */,
+			);
 			productName = WashYourHead;
 			productReference = 3255EA4B2B9C927400CB00FC /* WashYourHead.app */;
 			productType = "com.apple.product-type.application";
@@ -347,6 +360,9 @@
 				Base,
 			);
 			mainGroup = 3255EA422B9C927400CB00FC;
+			packageReferences = (
+				326170DB2B9E3832002595E0 /* XCRemoteSwiftPackageReference "SwiftUICalendar" */,
+			);
 			productRefGroup = 3255EA4C2B9C927400CB00FC /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -390,6 +406,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				326170CE2B9E1169002595E0 /* WashHistoryService.swift in Sources */,
+				326170D52B9E1DB3002595E0 /* CalendarViewFactory.swift in Sources */,
 				326170B12B9CC307002595E0 /* WashPeriodSetUpViewFactory.swift in Sources */,
 				326170C62B9DE766002595E0 /* HomeViewModel.swift in Sources */,
 				326170BE2B9D082F002595E0 /* SettingsView.swift in Sources */,
@@ -398,6 +415,7 @@
 				326170AE2B9CBE5B002595E0 /* WashPeriodSetUpOnboardingViewModel.swift in Sources */,
 				326170C22B9DD455002595E0 /* SettingsEntityModel.swift in Sources */,
 				326170B42B9CFE38002595E0 /* DashboardView.swift in Sources */,
+				326170D32B9E1D2E002595E0 /* CalendarViewModel.swift in Sources */,
 				326170CA2B9DF7F1002595E0 /* HistoryEntryEntityModel.swift in Sources */,
 				326170C42B9DE133002595E0 /* DashboardViewFactory.swift in Sources */,
 				326170BA2B9D07B9002595E0 /* HomeView.swift in Sources */,
@@ -732,6 +750,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		326170DB2B9E3832002595E0 /* XCRemoteSwiftPackageReference "SwiftUICalendar" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/GGJJack/SwiftUICalendar";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.14;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		326170DC2B9E3832002595E0 /* SwiftUICalendar */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 326170DB2B9E3832002595E0 /* XCRemoteSwiftPackageReference "SwiftUICalendar" */;
+			productName = SwiftUICalendar;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 3255EA432B9C927400CB00FC /* Project object */;
 }

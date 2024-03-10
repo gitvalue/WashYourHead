@@ -73,7 +73,7 @@ final class HomeViewModel: ObservableObject {
                 context.delete($0)
             }
         } else {
-            context.insert(HistoryEntryEntityModel(date: Date()))
+            context.insert(HistoryEntryEntityModel(date: .now))
         }
         
         try? context.save()

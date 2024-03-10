@@ -6,14 +6,23 @@
 //
 
 import SwiftUI
+import SwiftUICalendar
 
 struct CalendarView: View {
+    
+    // MARK: - Properties
+    
     var body: some View {
-        Text("Calendar")
-        Text("Sweet calendar")
+        SwiftUICalendar.CalendarView() { date in
+            Text("\(date.day)")
+        }
     }
-}
-
-#Preview {
-    CalendarView()
+    
+    @ObservedObject private var viewModel: CalendarViewModel
+    
+    // MARK: - Initialisation
+    
+    init(viewModel: CalendarViewModel) {
+        self.viewModel = viewModel
+    }
 }
