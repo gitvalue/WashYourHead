@@ -20,6 +20,12 @@
 		326170BA2B9D07B9002595E0 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326170B92B9D07B9002595E0 /* HomeView.swift */; };
 		326170BC2B9D0804002595E0 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326170BB2B9D0804002595E0 /* CalendarView.swift */; };
 		326170BE2B9D082F002595E0 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326170BD2B9D082F002595E0 /* SettingsView.swift */; };
+		326170C22B9DD455002595E0 /* SettingsEntityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326170C12B9DD455002595E0 /* SettingsEntityModel.swift */; };
+		326170C42B9DE133002595E0 /* DashboardViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326170C32B9DE133002595E0 /* DashboardViewFactory.swift */; };
+		326170C62B9DE766002595E0 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326170C52B9DE766002595E0 /* HomeViewModel.swift */; };
+		326170C82B9DE7F1002595E0 /* HomeViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326170C72B9DE7F1002595E0 /* HomeViewFactory.swift */; };
+		326170CA2B9DF7F1002595E0 /* HistoryEntryEntityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326170C92B9DF7F1002595E0 /* HistoryEntryEntityModel.swift */; };
+		326170CE2B9E1169002595E0 /* WashHistoryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326170CD2B9E1169002595E0 /* WashHistoryService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +62,12 @@
 		326170B92B9D07B9002595E0 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		326170BB2B9D0804002595E0 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		326170BD2B9D082F002595E0 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		326170C12B9DD455002595E0 /* SettingsEntityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsEntityModel.swift; sourceTree = "<group>"; };
+		326170C32B9DE133002595E0 /* DashboardViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewFactory.swift; sourceTree = "<group>"; };
+		326170C52B9DE766002595E0 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		326170C72B9DE7F1002595E0 /* HomeViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewFactory.swift; sourceTree = "<group>"; };
+		326170C92B9DF7F1002595E0 /* HistoryEntryEntityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryEntryEntityModel.swift; sourceTree = "<group>"; };
+		326170CD2B9E1169002595E0 /* WashHistoryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WashHistoryService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,7 +173,8 @@
 		326170A72B9CB10E002595E0 /* App */ = {
 			isa = PBXGroup;
 			children = (
-				3255EA4E2B9C927400CB00FC /* WashYourHeadApp.swift */,
+				326170BF2B9DD410002595E0 /* App */,
+				326170C02B9DD416002595E0 /* Model */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -181,6 +194,8 @@
 			isa = PBXGroup;
 			children = (
 				326170B92B9D07B9002595E0 /* HomeView.swift */,
+				326170C72B9DE7F1002595E0 /* HomeViewFactory.swift */,
+				326170C52B9DE766002595E0 /* HomeViewModel.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -205,8 +220,43 @@
 			isa = PBXGroup;
 			children = (
 				326170B32B9CFE38002595E0 /* DashboardView.swift */,
+				326170C32B9DE133002595E0 /* DashboardViewFactory.swift */,
 			);
 			path = Dashboard;
+			sourceTree = "<group>";
+		};
+		326170BF2B9DD410002595E0 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				3255EA4E2B9C927400CB00FC /* WashYourHeadApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		326170C02B9DD416002595E0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				326170CB2B9E1126002595E0 /* History */,
+				326170CC2B9E112A002595E0 /* Settings */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		326170CB2B9E1126002595E0 /* History */ = {
+			isa = PBXGroup;
+			children = (
+				326170C92B9DF7F1002595E0 /* HistoryEntryEntityModel.swift */,
+				326170CD2B9E1169002595E0 /* WashHistoryService.swift */,
+			);
+			path = History;
+			sourceTree = "<group>";
+		};
+		326170CC2B9E112A002595E0 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				326170C12B9DD455002595E0 /* SettingsEntityModel.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -339,11 +389,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				326170CE2B9E1169002595E0 /* WashHistoryService.swift in Sources */,
 				326170B12B9CC307002595E0 /* WashPeriodSetUpViewFactory.swift in Sources */,
+				326170C62B9DE766002595E0 /* HomeViewModel.swift in Sources */,
 				326170BE2B9D082F002595E0 /* SettingsView.swift in Sources */,
 				326170BC2B9D0804002595E0 /* CalendarView.swift in Sources */,
+				326170C82B9DE7F1002595E0 /* HomeViewFactory.swift in Sources */,
 				326170AE2B9CBE5B002595E0 /* WashPeriodSetUpOnboardingViewModel.swift in Sources */,
+				326170C22B9DD455002595E0 /* SettingsEntityModel.swift in Sources */,
 				326170B42B9CFE38002595E0 /* DashboardView.swift in Sources */,
+				326170CA2B9DF7F1002595E0 /* HistoryEntryEntityModel.swift in Sources */,
+				326170C42B9DE133002595E0 /* DashboardViewFactory.swift in Sources */,
 				326170BA2B9D07B9002595E0 /* HomeView.swift in Sources */,
 				3255EA4F2B9C927400CB00FC /* WashYourHeadApp.swift in Sources */,
 				326170AC2B9CBC6E002595E0 /* WashPeriodSetUpOnboardingView.swift in Sources */,

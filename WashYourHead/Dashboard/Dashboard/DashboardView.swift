@@ -10,22 +10,31 @@ import SwiftUI
 struct DashboardView: View {
     var body: some View {
         TabView {
-            HomeView()
-                .tabItem {
-                    Label("Home", systemImage: "house")
-                }
-            CalendarView()
-                .tabItem {
-                    Label("Calendar", systemImage: "calendar")
-                }
-            SettingsView()
-                .tabItem {
-                    Label("Settings", systemImage: "gearshape.fill")
-                }
+            VStack {
+                homeView
+            }.tabItem {
+                Label("Home", systemImage: "house")
+            }
+            VStack {
+                calendarView
+            }.tabItem {
+                Label("Calendar", systemImage: "calendar")
+            }
+            VStack {
+                settingsView
+            }.tabItem {
+                Label("Settings", systemImage: "gearshape.fill")
+            }
         }.navigationBarBackButtonHidden()
     }
-}
-
-#Preview {
-    DashboardView()
+    
+    private let homeView: AnyView
+    private let calendarView: AnyView
+    private let settingsView: AnyView
+        
+    init(homeView: AnyView, calendarView: AnyView, settingsView: AnyView) {
+        self.homeView = homeView
+        self.calendarView = calendarView
+        self.settingsView = settingsView
+    }
 }

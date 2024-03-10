@@ -5,12 +5,12 @@
 //  Created by Dmitry Volosach on 09/03/2024.
 //
 
-import Foundation
+import SwiftData
 import SwiftUI
 
 final class WashPeriodSetUpViewFactory {
-    func create() -> some View {
-        let viewModel = WashPeriodSetUpOnboardingViewModel()
+    @MainActor func create(withLazyModelContext lazyModelContext: @MainActor @escaping () -> (ModelContext?)) -> some View {
+        let viewModel = WashPeriodSetUpOnboardingViewModel(lazyModelContext: lazyModelContext)
         let view = WashPeriodSetUpOnboardingView(viewModel: viewModel)
         
         return view

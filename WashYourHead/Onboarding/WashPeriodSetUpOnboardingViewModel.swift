@@ -5,8 +5,10 @@
 //  Created by Dmitry Volosach on 09/03/2024.
 //
 
+import SwiftData
 import SwiftUI
 
+@MainActor
 final class WashPeriodSetUpOnboardingViewModel: ObservableObject {
     
     // MARK: - Properties
@@ -20,26 +22,42 @@ final class WashPeriodSetUpOnboardingViewModel: ObservableObject {
     let sliderRange: ClosedRange<Float> = 1...7
     let sliderStep: Float = 1
     
-    @Published var sliderValue: Float = 1.0 {
+    @Published var sliderValue: Float = .zero {
         didSet {
             sliderTitle = sliderTitle(forPeriod: Int(sliderValue))
+            
+            if let context = lazyModelContext() {
+                var fetchDescriptor = FetchDescriptor<SettingsEntityModel>()
+                fetchDescriptor.includePendingChanges = true
+                
+                do {
+                    try context.delete(model: SettingsEntityModel.self)
+                    context.insert(SettingsEntityModel(washingPeriod: Int(sliderValue)))
+                }
+                catch {
+                    while false {}
+                }
+            }
         }
     }
     
     @Published private(set) var sliderTitle: String = ""
     
     let continueButtonTitle: String = "Продолжить"
-    
-    // MARK: - Initialisers
-    
-    init() {
-        sliderTitle = sliderTitle(forPeriod: Int(sliderValue))
+    var continueNavigationLinkDestination: some View {
+        DashboardViewFactory().create(withLazyModelContext: lazyModelContext)
     }
     
-    // MARK: - Public
+    private let lazyModelContext: @MainActor () -> (ModelContext?)
+     
+    // MARK: - Initialisers
     
-    func continueNavigationLinkDestination() -> some View {
-        return DashboardView()
+    init(lazyModelContext: @MainActor @escaping () -> (ModelContext?)) {
+        self.lazyModelContext = lazyModelContext
+        
+        defer {
+            sliderValue = 7
+        }
     }
     
     // MARK: - Private

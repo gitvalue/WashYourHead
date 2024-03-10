@@ -40,7 +40,6 @@ struct WashPeriodSetUpOnboardingView: View {
             }.background(.blue)
                 .clipShape(RoundedRectangle(cornerRadius: 8.0))
                 .padding()
-
         } detail: {
             Text("xyu")
         }
@@ -51,8 +50,4 @@ struct WashPeriodSetUpOnboardingView: View {
     init(viewModel: WashPeriodSetUpOnboardingViewModel) {
         self.viewModel = viewModel
     }
-}
-
-#Preview {
-    WashPeriodSetUpViewFactory().create()
 }

@@ -9,10 +9,36 @@ import SwiftUI
 
 struct HomeView: View {
     var body: some View {
-        Text("Home")
+        Spacer()
+        Text(viewModel.body)
+            .font(.title2)
+            .multilineTextAlignment(.center)
+            .padding()
+        Button {
+            viewModel.onButtonPress()
+        } label: {
+            Text(viewModel.buttonText)
+                .frame(maxWidth: .infinity)
+                .padding()
+                .foregroundStyle(.white)
+        }.background(buttonColor)
+            .clipShape(RoundedRectangle(cornerRadius: 8.0))
+            .padding()
+        Spacer()
     }
-}
-
-#Preview {
-    HomeView()
+    
+    private var buttonColor: Color {
+        switch viewModel.buttonStyle {
+        case .constructive:
+            return .blue
+        case .destructive:
+            return .red
+        }
+    }
+    
+    @ObservedObject private var viewModel: HomeViewModel
+    
+    init(viewModel: HomeViewModel) {
+        self.viewModel = viewModel
+    }
 }
