@@ -1,12 +1,12 @@
 {
   "pins" : [
     {
-      "identity" : "snapkit",
+      "identity" : "yourcalendar",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/SnapKit/SnapKit.git",
+      "location" : "https://github.com/gitvalue/YourCalendar",
       "state" : {
-        "revision" : "2842e6e84e82eb9a8dac0100ca90d9444b0307f4",
-        "version" : "5.7.1"
+        "revision" : "6d701d0f4b74809f9f0e427288649bf538cc6728",
+        "version" : "1.0.0"
       }
     }
   ],

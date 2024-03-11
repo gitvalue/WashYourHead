@@ -9,6 +9,7 @@ import Combine
 import Foundation
 import SwiftData
 import SwiftUI
+import YourCalendar
 
 @MainActor
 final class CalendarViewModel: ObservableObject {
@@ -17,9 +18,9 @@ final class CalendarViewModel: ObservableObject {
     
     @Published private(set) var title: String = ""
     
-    var model: CalendarListView<CalendarViewDayCell, CalendarViewConfigurator>.Model {
-        return CalendarListView<CalendarViewDayCell, CalendarViewConfigurator>.Model(
-            date: currentMonth,
+    var model: CalendarListView<CalendarViewDayCell, BasicCalendarViewConfigurator>.Model {
+        return CalendarListView<CalendarViewDayCell, BasicCalendarViewConfigurator>.Model(
+            date: .now,
             dateShifter: MonthlyCalendarViewDateShifter(),
             configurator: configurator
         )
@@ -27,8 +28,8 @@ final class CalendarViewModel: ObservableObject {
     
     @Published private(set) var isButtonVisible: Bool = false
         
-    private lazy var configurator: CalendarViewConfigurator = {
-        let result = CalendarViewConfigurator(enumerator: MonthlyCalendarViewDateEnumerator())
+    private lazy var configurator: BasicCalendarViewConfigurator = {
+        let result = BasicCalendarViewConfigurator(enumerator: MonthlyCalendarViewDateEnumerator())
         result.set(markVisibilityPredicate: { [weak self] date in
             guard let self else { return false }
             

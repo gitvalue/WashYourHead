@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import YourCalendar
 
 struct CalendarUIViewRepresentable: UIViewRepresentable {
     
@@ -26,13 +27,11 @@ struct CalendarUIViewRepresentable: UIViewRepresentable {
     }
     
     func makeUIView(context: Context) -> some UIView {
-        let calendarListView = CalendarListView<CalendarViewDayCell, CalendarViewConfigurator>(frame: .zero)
+        let calendarListView = CalendarListView<CalendarViewDayCell, BasicCalendarViewConfigurator>(frame: .zero)
         calendarListView.update(model: viewModel.model)
         
-        calendarListView.onDayCellSelection = { [weak viewModel, weak calendarListView] input in
+        calendarListView.onDayCellSelection = { [weak viewModel, weak calendarListView] indexPath, date in
             guard let viewModel, let calendarListView else { return }
-
-            let (indexPath, date) = input
 
             viewModel.onDayCellSelection(indexPath, date)
             calendarListView.reload()
