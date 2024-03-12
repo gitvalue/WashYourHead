@@ -14,6 +14,13 @@ import YourCalendar
 @MainActor
 final class CalendarViewModel: ObservableObject {
     
+    // MARK: - Model
+    
+    enum ButtonStyle {
+        case constructive
+        case destructive
+    }
+    
     // MARK: - Properties
     
     @Published private(set) var title: String = ""
@@ -26,7 +33,18 @@ final class CalendarViewModel: ObservableObject {
         )
     }
     
+    @Published private(set) var buttonTitle: String = ""
     @Published private(set) var isButtonVisible: Bool = false
+    @Published private(set) var buttonStyle: ButtonStyle = .constructive {
+        didSet {
+            switch buttonStyle {
+            case .constructive:
+                buttonTitle = "I washed my head this day"
+            case .destructive:
+                buttonTitle = "I didn't wash my head this day"
+            }
+        }
+    }
         
     private lazy var configurator: BasicCalendarViewConfigurator = {
         let result = BasicCalendarViewConfigurator(enumerator: MonthlyCalendarViewDateEnumerator())
@@ -45,6 +63,7 @@ final class CalendarViewModel: ObservableObject {
         }
     }
     
+    private var onReloadHandler: (() -> ())?
     private let lazyModelContext: @MainActor () -> (ModelContext?)
     
     // MARK: - Initialisation
@@ -56,10 +75,47 @@ final class CalendarViewModel: ObservableObject {
     
     // MARK: - Public
     
+    func setOnReloadHandler(_ onReloadHandler: @escaping () -> ()) {
+        self.onReloadHandler = onReloadHandler
+    }
+    
+    func onDidAppear() {
+        reload()
+    }
+    
     func onDayCellSelection(_ indexPath: IndexPath, _ date: Date) {
-        if let date = configurator.date(fromBase: date, indexPath: indexPath) {
+        if let date = configurator.date(fromBase: date, indexPath: indexPath), date.timeIntervalSinceNow <= 0 {
             configurator.set(selectedDay: date, resetIfSame: true)
-            isButtonVisible = washingTookPlace(on: date)
+            reload()
+        }
+    }
+    
+    func onButtonPress() {
+        guard 
+            let selectedDay = configurator.selectedDay,
+            let context = lazyModelContext()
+        else {
+            return
+        }
+                
+        var fetchDescriptor = FetchDescriptor<HistoryEntryEntityModel>()
+        fetchDescriptor.includePendingChanges = true
+        
+        do {
+            let entries = try context.fetch(fetchDescriptor).filter {
+                Calendar.current.isDate($0.date, inSameDayAs: selectedDay)
+            }
+            
+            if entries.isEmpty {
+                context.insert(HistoryEntryEntityModel(date: selectedDay))
+            } else {
+                entries.forEach { context.delete($0) }
+            }
+            
+            try context.save()
+            reload()
+        } catch {
+            return
         }
     }
     
@@ -92,5 +148,16 @@ final class CalendarViewModel: ObservableObject {
         } else {
             return false
         }
+    }
+    
+    private func reload() {
+        if let selectedDay = configurator.selectedDay {
+            isButtonVisible = true
+            buttonStyle = washingTookPlace(on: selectedDay) ? .destructive : .constructive
+        } else {
+            isButtonVisible = false
+        }
+                
+        onReloadHandler?()
     }
 }

@@ -19,17 +19,29 @@ struct CalendarView: View {
             .padding(10)
         CalendarUIViewRepresentable(viewModel: viewModel)
             .padding(10)
+            .onAppear {
+                viewModel.onDidAppear()
+            }
         if viewModel.isButtonVisible {
             Button {
-                
+                viewModel.onButtonPress()
             } label: {
-                Text("Button")
+                Text(viewModel.buttonTitle)
                     .frame(maxWidth: .infinity)
                     .padding()
                     .foregroundStyle(.white)
-            }.background(.blue)
+            }.background(buttonColor)
                 .clipShape(RoundedRectangle(cornerRadius: 8.0))
                 .padding()
+        }
+    }
+    
+    private var buttonColor: Color {
+        switch viewModel.buttonStyle {
+        case .constructive:
+            return .blue
+        case .destructive:
+            return .red
         }
     }
     

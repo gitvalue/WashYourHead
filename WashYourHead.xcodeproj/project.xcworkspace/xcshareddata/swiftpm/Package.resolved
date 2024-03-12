@@ -5,8 +5,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/gitvalue/YourCalendar",
       "state" : {
-        "revision" : "6d701d0f4b74809f9f0e427288649bf538cc6728",
-        "version" : "1.0.0"
+        "revision" : "2a8fbe86fd8180ad73be7f413939711efa4251aa",
+        "version" : "1.0.2"
       }
     }
   ],

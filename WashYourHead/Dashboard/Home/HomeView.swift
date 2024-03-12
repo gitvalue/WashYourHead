@@ -24,7 +24,9 @@ struct HomeView: View {
         }.background(buttonColor)
             .clipShape(RoundedRectangle(cornerRadius: 8.0))
             .padding()
-        Spacer()
+        Spacer().onAppear {
+            viewModel.onDidAppear()
+        }
     }
     
     private var buttonColor: Color {

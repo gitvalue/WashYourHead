@@ -59,6 +59,10 @@ final class HomeViewModel: ObservableObject {
     }
     
     // MARK: - Public
+    
+    func onDidAppear() {
+        update()
+    }
         
     func onButtonPress() {
         guard let context = lazyModelContext() else { return }
