@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		322C70902BA3900F0034BAB6 /* SettingsRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322C708F2BA3900F0034BAB6 /* SettingsRow.swift */; };
+		322C70922BA390870034BAB6 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322C70912BA390870034BAB6 /* SettingsViewModel.swift */; };
+		322C70942BA392670034BAB6 /* SettingsViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322C70932BA392670034BAB6 /* SettingsViewFactory.swift */; };
+		322C70982BA395E40034BAB6 /* WashPeriodSetUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322C70972BA395E40034BAB6 /* WashPeriodSetUpView.swift */; };
+		322C709A2BA396680034BAB6 /* WashPeriodSetUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322C70992BA396680034BAB6 /* WashPeriodSetUpViewModel.swift */; };
+		322C709C2BA39C5F0034BAB6 /* WashPeriodSetUpViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322C709B2BA39C5F0034BAB6 /* WashPeriodSetUpViewFactory.swift */; };
+		322C709E2BA3A0520034BAB6 /* SettingsRowModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322C709D2BA3A0520034BAB6 /* SettingsRowModel.swift */; };
 		3255EA4F2B9C927400CB00FC /* WashYourHeadApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3255EA4E2B9C927400CB00FC /* WashYourHeadApp.swift */; };
 		3255EA552B9C927500CB00FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3255EA542B9C927500CB00FC /* Assets.xcassets */; };
 		3255EA582B9C927500CB00FC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3255EA572B9C927500CB00FC /* Preview Assets.xcassets */; };
@@ -15,7 +22,7 @@
 		3255EA6E2B9C927500CB00FC /* WashYourHeadUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3255EA6D2B9C927500CB00FC /* WashYourHeadUITestsLaunchTests.swift */; };
 		326170AC2B9CBC6E002595E0 /* WashPeriodSetUpOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326170AB2B9CBC6E002595E0 /* WashPeriodSetUpOnboardingView.swift */; };
 		326170AE2B9CBE5B002595E0 /* WashPeriodSetUpOnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326170AD2B9CBE5B002595E0 /* WashPeriodSetUpOnboardingViewModel.swift */; };
-		326170B12B9CC307002595E0 /* WashPeriodSetUpViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326170B02B9CC307002595E0 /* WashPeriodSetUpViewFactory.swift */; };
+		326170B12B9CC307002595E0 /* WashPeriodSetUpOnboardingViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326170B02B9CC307002595E0 /* WashPeriodSetUpOnboardingViewFactory.swift */; };
 		326170B42B9CFE38002595E0 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326170B32B9CFE38002595E0 /* DashboardView.swift */; };
 		326170BA2B9D07B9002595E0 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326170B92B9D07B9002595E0 /* HomeView.swift */; };
 		326170BC2B9D0804002595E0 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326170BB2B9D0804002595E0 /* CalendarView.swift */; };
@@ -65,6 +72,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		322C708F2BA3900F0034BAB6 /* SettingsRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRow.swift; sourceTree = "<group>"; };
+		322C70912BA390870034BAB6 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		322C70932BA392670034BAB6 /* SettingsViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewFactory.swift; sourceTree = "<group>"; };
+		322C70972BA395E40034BAB6 /* WashPeriodSetUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WashPeriodSetUpView.swift; sourceTree = "<group>"; };
+		322C70992BA396680034BAB6 /* WashPeriodSetUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WashPeriodSetUpViewModel.swift; sourceTree = "<group>"; };
+		322C709B2BA39C5F0034BAB6 /* WashPeriodSetUpViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WashPeriodSetUpViewFactory.swift; sourceTree = "<group>"; };
+		322C709D2BA3A0520034BAB6 /* SettingsRowModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRowModel.swift; sourceTree = "<group>"; };
 		3255EA4B2B9C927400CB00FC /* WashYourHead.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WashYourHead.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3255EA4E2B9C927400CB00FC /* WashYourHeadApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WashYourHeadApp.swift; sourceTree = "<group>"; };
 		3255EA542B9C927500CB00FC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -76,7 +90,7 @@
 		3255EA6D2B9C927500CB00FC /* WashYourHeadUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WashYourHeadUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		326170AB2B9CBC6E002595E0 /* WashPeriodSetUpOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WashPeriodSetUpOnboardingView.swift; sourceTree = "<group>"; };
 		326170AD2B9CBE5B002595E0 /* WashPeriodSetUpOnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WashPeriodSetUpOnboardingViewModel.swift; sourceTree = "<group>"; };
-		326170B02B9CC307002595E0 /* WashPeriodSetUpViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WashPeriodSetUpViewFactory.swift; sourceTree = "<group>"; };
+		326170B02B9CC307002595E0 /* WashPeriodSetUpOnboardingViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WashPeriodSetUpOnboardingViewFactory.swift; sourceTree = "<group>"; };
 		326170B32B9CFE38002595E0 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
 		326170B92B9D07B9002595E0 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		326170BB2B9D0804002595E0 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
@@ -120,6 +134,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		322C70952BA395BF0034BAB6 /* List */ = {
+			isa = PBXGroup;
+			children = (
+				322C708F2BA3900F0034BAB6 /* SettingsRow.swift */,
+				322C709D2BA3A0520034BAB6 /* SettingsRowModel.swift */,
+				326170BD2B9D082F002595E0 /* SettingsView.swift */,
+				322C70932BA392670034BAB6 /* SettingsViewFactory.swift */,
+				322C70912BA390870034BAB6 /* SettingsViewModel.swift */,
+			);
+			path = List;
+			sourceTree = "<group>";
+		};
+		322C70962BA395C90034BAB6 /* WashPeriod */ = {
+			isa = PBXGroup;
+			children = (
+				322C70972BA395E40034BAB6 /* WashPeriodSetUpView.swift */,
+				322C70992BA396680034BAB6 /* WashPeriodSetUpViewModel.swift */,
+				322C709B2BA39C5F0034BAB6 /* WashPeriodSetUpViewFactory.swift */,
+			);
+			path = WashPeriod;
+			sourceTree = "<group>";
+		};
 		3255EA422B9C927400CB00FC = {
 			isa = PBXGroup;
 			children = (
@@ -184,7 +220,7 @@
 			children = (
 				326170AB2B9CBC6E002595E0 /* WashPeriodSetUpOnboardingView.swift */,
 				326170AD2B9CBE5B002595E0 /* WashPeriodSetUpOnboardingViewModel.swift */,
-				326170B02B9CC307002595E0 /* WashPeriodSetUpViewFactory.swift */,
+				326170B02B9CC307002595E0 /* WashPeriodSetUpOnboardingViewFactory.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -230,7 +266,8 @@
 		326170B62B9D0792002595E0 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				326170BD2B9D082F002595E0 /* SettingsView.swift */,
+				322C70952BA395BF0034BAB6 /* List */,
+				322C70962BA395C90034BAB6 /* WashPeriod */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -468,9 +505,12 @@
 			files = (
 				326170CE2B9E1169002595E0 /* WashHistoryService.swift in Sources */,
 				326170D52B9E1DB3002595E0 /* CalendarViewFactory.swift in Sources */,
-				326170B12B9CC307002595E0 /* WashPeriodSetUpViewFactory.swift in Sources */,
+				326170B12B9CC307002595E0 /* WashPeriodSetUpOnboardingViewFactory.swift in Sources */,
+				322C709E2BA3A0520034BAB6 /* SettingsRowModel.swift in Sources */,
 				326170C62B9DE766002595E0 /* HomeViewModel.swift in Sources */,
 				326170BE2B9D082F002595E0 /* SettingsView.swift in Sources */,
+				322C70982BA395E40034BAB6 /* WashPeriodSetUpView.swift in Sources */,
+				322C70922BA390870034BAB6 /* SettingsViewModel.swift in Sources */,
 				326170BC2B9D0804002595E0 /* CalendarView.swift in Sources */,
 				326170C82B9DE7F1002595E0 /* HomeViewFactory.swift in Sources */,
 				326170AE2B9CBE5B002595E0 /* WashPeriodSetUpOnboardingViewModel.swift in Sources */,
@@ -480,9 +520,13 @@
 				32B16DD32B9E4B7A00A4A5B4 /* CalendarUIViewRepresentable.swift in Sources */,
 				326170CA2B9DF7F1002595E0 /* HistoryEntryEntityModel.swift in Sources */,
 				326170C42B9DE133002595E0 /* DashboardViewFactory.swift in Sources */,
+				322C709A2BA396680034BAB6 /* WashPeriodSetUpViewModel.swift in Sources */,
 				326170BA2B9D07B9002595E0 /* HomeView.swift in Sources */,
+				322C70942BA392670034BAB6 /* SettingsViewFactory.swift in Sources */,
 				3255EA4F2B9C927400CB00FC /* WashYourHeadApp.swift in Sources */,
+				322C709C2BA39C5F0034BAB6 /* WashPeriodSetUpViewFactory.swift in Sources */,
 				326170AC2B9CBC6E002595E0 /* WashPeriodSetUpOnboardingView.swift in Sources */,
+				322C70902BA3900F0034BAB6 /* SettingsRow.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

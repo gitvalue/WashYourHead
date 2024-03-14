@@ -34,7 +34,7 @@ import SwiftData
                 }
             }
             else {
-                WashPeriodSetUpViewFactory().create {
+                WashPeriodSetUpOnboardingViewFactory().create {
                     return modelContainer?.mainContext
                 }
             }

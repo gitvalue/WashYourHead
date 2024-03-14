@@ -130,7 +130,7 @@ final class CalendarViewModel: ObservableObject {
         let dateFormatter = DateFormatter()
 
         // Устанавливаем стиль вывода, который содержит только название месяца
-        dateFormatter.dateFormat = "LLLL"
+        dateFormatter.dateFormat = "LLLL yyyy"
 
         // Преобразуем дату в строку с названием месяца
         title = dateFormatter.string(from: currentMonth)

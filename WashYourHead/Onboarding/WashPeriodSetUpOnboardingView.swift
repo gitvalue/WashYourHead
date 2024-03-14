@@ -10,28 +10,7 @@ import SwiftUI
 struct WashPeriodSetUpOnboardingView: View {
     var body: some View {
         NavigationSplitView {
-            Text(viewModel.header)
-                .font(.title)
-                .multilineTextAlignment(.center)
-                .padding(.top, 50.0)
-                .padding(.horizontal, 16.0)
-            Spacer()
-            VStack {
-                Text(viewModel.sliderTitle)
-                    .font(.title2)
-                Slider(
-                    value: $viewModel.sliderValue,
-                    in: viewModel.sliderRange,
-                    step: viewModel.sliderStep,
-                    label: {
-                        Text("")
-                    }, minimumValueLabel: {
-                        Text(viewModel.sliderLowerBound)
-                    }, maximumValueLabel: {
-                        Text(viewModel.sliderUpperBound)
-                    }).padding()
-            }
-            Spacer()
+            WashPeriodSetUpView(viewModel: contentViewModel)
             NavigationLink(destination: viewModel.continueNavigationLinkDestination) {
                 Text(viewModel.continueButtonTitle)
                     .frame(maxWidth: .infinity)
@@ -46,8 +25,13 @@ struct WashPeriodSetUpOnboardingView: View {
     }
     
     @ObservedObject private var viewModel: WashPeriodSetUpOnboardingViewModel
+    private let contentViewModel: WashPeriodSetUpViewModel
     
-    init(viewModel: WashPeriodSetUpOnboardingViewModel) {
+    init(
+        viewModel: WashPeriodSetUpOnboardingViewModel,
+        contentViewModel: WashPeriodSetUpViewModel
+    ) {
         self.viewModel = viewModel
+        self.contentViewModel = contentViewModel
     }
 }
