@@ -34,23 +34,14 @@ final class CalendarViewModel: ObservableObject {
     
     @Published private(set) var buttonTitle: String = ""
     @Published private(set) var isButtonVisible: Bool = false
-    @Published private(set) var buttonStyle: ButtonStyle = .constructive {
-        didSet {
-            switch buttonStyle {
-            case .constructive:
-                buttonTitle = "I washed my head this day"
-            case .destructive:
-                buttonTitle = "I didn't wash my head this day"
-            }
-        }
-    }
+    @Published private(set) var buttonStyle: ButtonStyle = .constructive
         
     private lazy var configurator: BasicCalendarViewConfigurator = {
         let result = BasicCalendarViewConfigurator(enumerator: MonthlyCalendarViewDateEnumerator())
         result.set(markVisibilityPredicate: { [weak self] date in
             guard let self else { return false }
             
-            return self.washingTookPlace(on: date)
+            return self.eventExists(for: date)
         })
         
         return result
@@ -83,7 +74,7 @@ final class CalendarViewModel: ObservableObject {
     }
     
     func onDayCellSelection(_ indexPath: IndexPath, _ date: Date) {
-        if let date = configurator.date(fromBase: date, indexPath: indexPath), date.timeIntervalSinceNow <= 0 {
+        if let date = configurator.date(fromBase: date, indexPath: indexPath) {
             configurator.set(selectedDay: date, resetIfSame: true)
             reload()
         }
@@ -126,14 +117,22 @@ final class CalendarViewModel: ObservableObject {
         title = dateFormatter.string(from: currentMonth)
     }
     
-    private func washingTookPlace(on date: Date) -> Bool {
+    private func eventExists(for date: Date) -> Bool {
         return washEventsService.getAllEvents().contains { date.isInSameDayAs($0.date) }
     }
     
     private func reload() {
         if let selectedDay = configurator.selectedDay {
             isButtonVisible = true
-            buttonStyle = washingTookPlace(on: selectedDay) ? .destructive : .constructive
+            
+            let selectedDayIsInTheFuture = 0 < selectedDay.timeIntervalSinceNow
+            if eventExists(for: selectedDay) {
+                buttonStyle = .destructive
+                buttonTitle = selectedDayIsInTheFuture ? "Unschedule" : "I didn't wash my head this day"
+            } else {
+                buttonStyle = .constructive
+                buttonTitle = selectedDayIsInTheFuture ? "Schedule" : "I washed my head this day"
+            }
         } else {
             isButtonVisible = false
         }

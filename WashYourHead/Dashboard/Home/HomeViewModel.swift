@@ -99,8 +99,17 @@ final class HomeViewModel: ObservableObject {
     }
     
     private func dayOfWeekString(from date: Date) -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "EEEE"
-        return dateFormatter.string(from: date)
+        let formatStyle: Date.FormatStyle
+        
+        if Calendar.current.isDate(.now, equalTo: date, toGranularity: .weekOfMonth) {
+            formatStyle = Date.FormatStyle().weekday(.wide)
+        } else {
+            formatStyle = Date.FormatStyle()
+                .weekday()
+                .day()
+                .month()
+        }
+        
+        return date.formatted(formatStyle)
     }
 }
