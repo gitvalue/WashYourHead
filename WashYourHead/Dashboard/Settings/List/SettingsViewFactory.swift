@@ -5,13 +5,13 @@
 //  Created by Admin on 14/03/2024.
 //
 
-import SwiftData
+import Foundation
 import SwiftUI
 
 final class SettingsViewFactory {
     @MainActor
-    func create(withLazyModelContext lazyModelContext: @MainActor @escaping () -> (ModelContext?)) -> some View {
-        let viewModel = SettingsViewModel(lazyModelContext: lazyModelContext)
+    func create() -> some View {
+        let viewModel = SettingsViewModel()
         let view = SettingsView(viewModel: viewModel)
         
         return view

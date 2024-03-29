@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import SwiftData
 import SwiftUI
 
 @MainActor
@@ -16,19 +15,11 @@ final class SettingsViewModel {
     
     let washPeriodRowModel = SettingsRowModel(icon: "shower", title: "Wash period")
     var washingPeriodNavigationLinkDestination: some View {
-        return WashPeriodSetUpViewFactory().create(withLazyModelContext: lazyModelContext)
+        return WashPeriodSetUpViewFactory().create()
     }
     
     let languageRowModel = SettingsRowModel(icon: "globe", title: "Language")
-    
-    private let lazyModelContext: @MainActor () -> (ModelContext?)
-    
-    // MARK: - Initialisers
-    
-    init(lazyModelContext: @MainActor @escaping () -> (ModelContext?)) {
-        self.lazyModelContext = lazyModelContext
-    }
-    
+        
     // MARK: - Public
     
     func onLanguageRowPress() {

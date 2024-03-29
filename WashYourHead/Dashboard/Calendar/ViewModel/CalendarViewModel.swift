@@ -7,7 +7,6 @@
 
 import Combine
 import Foundation
-import SwiftData
 import SwiftUI
 import YourCalendar
 
@@ -64,12 +63,12 @@ final class CalendarViewModel: ObservableObject {
     }
     
     private var onReloadHandler: (() -> ())?
-    private let lazyModelContext: @MainActor () -> (ModelContext?)
+    private let washEventsService: WashEventsServiceProtocol
     
     // MARK: - Initialisation
     
-    init(lazyModelContext: @MainActor @escaping () -> (ModelContext?)) {
-        self.lazyModelContext = lazyModelContext
+    init(washEventsService: WashEventsServiceProtocol) {
+        self.washEventsService = washEventsService
         updateTitle()
     }
     
@@ -92,31 +91,22 @@ final class CalendarViewModel: ObservableObject {
     
     func onButtonPress() {
         guard 
-            let selectedDay = configurator.selectedDay,
-            let context = lazyModelContext()
+            let selectedDay = configurator.selectedDay
         else {
             return
         }
-                
-        var fetchDescriptor = FetchDescriptor<HistoryEntryEntityModel>()
-        fetchDescriptor.includePendingChanges = true
         
-        do {
-            let entries = try context.fetch(fetchDescriptor).filter {
-                Calendar.current.isDate($0.date, inSameDayAs: selectedDay)
-            }
-            
-            if entries.isEmpty {
-                context.insert(HistoryEntryEntityModel(date: selectedDay))
-            } else {
-                entries.forEach { context.delete($0) }
-            }
-            
-            try context.save()
-            reload()
-        } catch {
-            return
+        let entries = washEventsService.getAllEvents().filter {
+            selectedDay.isInSameDayAs($0.date)
         }
+        
+        if entries.isEmpty {
+            washEventsService.addEvent(on: selectedDay, markCompleted: true)
+        } else {
+            washEventsService.removeEvent(selectedDay)
+        }
+        
+        reload()
     }
     
     func onDecelerationDidEnd(_ date: Date) {
@@ -137,17 +127,7 @@ final class CalendarViewModel: ObservableObject {
     }
     
     private func washingTookPlace(on date: Date) -> Bool {
-        guard let context = lazyModelContext() else { return false }
-        
-        var fetchDescriptor = FetchDescriptor<HistoryEntryEntityModel>()
-        fetchDescriptor.includePendingChanges = true
-        
-        if let entries = try? context.fetch(fetchDescriptor),
-            entries.contains(where: { Calendar.current.isDate($0.date, inSameDayAs: date) }) {
-            return true
-        } else {
-            return false
-        }
+        return washEventsService.getAllEvents().contains { date.isInSameDayAs($0.date) }
     }
     
     private func reload() {

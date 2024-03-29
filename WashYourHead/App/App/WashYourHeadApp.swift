@@ -10,12 +10,13 @@ import SwiftData
 
 @main
 @MainActor struct WashYourHeadApp: App {
-    private let modelContainer: ModelContainer? = try? ModelContainer(
-        for: SettingsEntityModel.self, HistoryEntryEntityModel.self
+    static let modelContainer: ModelContainer? = try? ModelContainer(
+        for: SettingsEntityModel.self,
+        WashEventEntity.self
     )
     
     private var hasWashPeriodBeenSetUp: Bool {
-        guard let context =  modelContainer?.mainContext else { return false }
+        guard let context = Self.modelContainer?.mainContext else { return false }
         
         let fetchDescriptor = FetchDescriptor<SettingsEntityModel>()
         if let settings = try? context.fetch(fetchDescriptor), !settings.isEmpty {
@@ -29,14 +30,9 @@ import SwiftData
     var body: some Scene {
         WindowGroup {
             if hasWashPeriodBeenSetUp {
-                DashboardViewFactory().create {
-                    return modelContainer?.mainContext
-                }
-            }
-            else {
-                WashPeriodSetUpOnboardingViewFactory().create {
-                    return modelContainer?.mainContext
-                }
+                DashboardViewFactory().create()
+            } else {
+                WashPeriodSetUpOnboardingViewFactory().create()
             }
         }
     }

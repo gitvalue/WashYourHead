@@ -5,16 +5,21 @@
 //  Created by Dmitry Volosach on 10/03/2024.
 //
 
-import SwiftData
+import Foundation
 import SwiftUI
 
 final class CalendarViewFactory {
     
     // MARK: - Public
     
-    @MainActor func create(withLazyModelContext lazyModelContext: @MainActor @escaping () -> (ModelContext?)) -> some View {
-        let viewModel = CalendarViewModel(lazyModelContext: lazyModelContext)
-        let result = CalendarView(viewModel: viewModel)
-        return result
+    @MainActor func create() -> some View {
+        guard let modelContext = WashYourHeadApp.modelContainer?.mainContext else {
+            fatalError()
+        }
+        
+        let washEventsService = WashEventsService(modelContext: modelContext)
+        let viewModel = CalendarViewModel(washEventsService: washEventsService)
+        
+        return CalendarView(viewModel: viewModel)
     }
 }

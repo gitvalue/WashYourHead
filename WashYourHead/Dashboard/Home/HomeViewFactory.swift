@@ -5,14 +5,22 @@
 //  Created by Dmitry Volosach on 10/03/2024.
 //
 
-import SwiftData
+import Foundation
 import SwiftUI
 
 final class HomeViewFactory {
-    @MainActor func create(withLazyModelContext lazyModelContext: @MainActor @escaping () -> (ModelContext?)) -> some View {
-        let viewModel = HomeViewModel(lazyModelContext: lazyModelContext)
-        let view = HomeView(viewModel: viewModel)
+    @MainActor func create() -> some View {
+        guard let modelContext = WashYourHeadApp.modelContainer?.mainContext else {
+            fatalError()
+        }
         
-        return view
+        let washEventsService = WashEventsService(modelContext: modelContext)
+        let settingsService = SettingsService(modelContext: modelContext)
+        let viewModel = HomeViewModel(
+            washEventsService: washEventsService,
+            settingsService: settingsService
+        )
+        
+        return HomeView(viewModel: viewModel)
     }
 }

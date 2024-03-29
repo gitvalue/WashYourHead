@@ -5,7 +5,7 @@
 //  Created by Dmitry Volosach on 10/03/2024.
 //
 
-import SwiftData
+import Foundation
 import SwiftUI
 
 final class DashboardViewFactory {
@@ -13,16 +13,15 @@ final class DashboardViewFactory {
     // MARK: - Public
     
     @MainActor 
-    func create(withLazyModelContext lazyModelContext: @MainActor @escaping () -> (ModelContext?)) -> some View {
-        let homeView = HomeViewFactory().create(withLazyModelContext: lazyModelContext)
-        let calendarView = CalendarViewFactory().create(withLazyModelContext: lazyModelContext)
-        let settingsView = SettingsViewFactory().create(withLazyModelContext: lazyModelContext)
+    func create() -> some View {
+        let homeView = HomeViewFactory().create()
+        let calendarView = CalendarViewFactory().create()
+        let settingsView = SettingsViewFactory().create()
         
-        let view = DashboardView(
+        return DashboardView(
             homeView: AnyView(homeView),
             calendarView: AnyView(calendarView),
             settingsView: AnyView(settingsView)
         )
-        return view
     }
 }

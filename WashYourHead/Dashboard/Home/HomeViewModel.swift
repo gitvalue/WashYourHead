@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import SwiftData
 
 @MainActor 
 final class HomeViewModel: ObservableObject {
@@ -39,22 +38,17 @@ final class HomeViewModel: ObservableObject {
     }
     
     private var dateLastWashed: Date? {
-        guard let context = lazyModelContext() else { return nil }
-        
-        var fetchDescriptor = FetchDescriptor<HistoryEntryEntityModel>(
-            sortBy: [SortDescriptor<HistoryEntryEntityModel>(\.date)]
-        )
-        fetchDescriptor.includePendingChanges = true
-
-        return try? context.fetch(fetchDescriptor).last?.date
+        return washEventsService.getAllEvents().sorted { $0.date < $1.date }.last?.date
     }
     
-    private let lazyModelContext: @MainActor () -> (ModelContext?)
+    private let washEventsService: WashEventsServiceProtocol
+    private let settingsService: SettingsServiceProtocol
     
     // MARK: - Initialising
     
-    init(lazyModelContext: @MainActor @escaping () -> (ModelContext?)) {
-        self.lazyModelContext = lazyModelContext
+    init(washEventsService: WashEventsServiceProtocol, settingsService: SettingsServiceProtocol) {
+        self.washEventsService = washEventsService
+        self.settingsService = settingsService
         update()
     }
     
@@ -65,22 +59,11 @@ final class HomeViewModel: ObservableObject {
     }
         
     func onButtonPress() {
-        guard let context = lazyModelContext() else { return }
-                
         if washedToday {
-            var fetchDescriptor = FetchDescriptor<HistoryEntryEntityModel>()
-            fetchDescriptor.includePendingChanges = true
-
-            try? context.fetch(fetchDescriptor).filter {
-                Calendar.current.isDateInToday($0.date)
-            }.forEach {
-                context.delete($0)
-            }
+            washEventsService.removeEvent(.now)
         } else {
-            context.insert(HistoryEntryEntityModel(date: .now))
+            washEventsService.addEvent(on: .now, markCompleted: true)
         }
-        
-        try? context.save()
         
         update()
     }
@@ -95,10 +78,7 @@ final class HomeViewModel: ObservableObject {
             return
         }
         
-        var settingsFetchDescriptor = FetchDescriptor<SettingsEntityModel>()
-        settingsFetchDescriptor.includePendingChanges = true
-        
-        guard let settings = try? lazyModelContext()?.fetch(settingsFetchDescriptor).first else {
+        guard let settings = settingsService.settings else {
             body = noHistoryBodyText
             return
         }

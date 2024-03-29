@@ -7,7 +7,6 @@
 
 import Combine
 import Foundation
-import SwiftData
 
 @MainActor
 final class WashPeriodSetUpViewModel: ObservableObject {
@@ -25,30 +24,18 @@ final class WashPeriodSetUpViewModel: ObservableObject {
     @Published var sliderValue: Float = .zero {
         didSet {
             sliderTitle = sliderTitle(forPeriod: Int(sliderValue))
-            
-            if let context = lazyModelContext() {
-                var fetchDescriptor = FetchDescriptor<SettingsEntityModel>()
-                fetchDescriptor.includePendingChanges = true
-                
-                do {
-                    try context.delete(model: SettingsEntityModel.self)
-                    context.insert(SettingsEntityModel(washingPeriod: Int(sliderValue)))
-                }
-                catch {
-                    while false {}
-                }
-            }
+            settingsService.setWashingPeriod(Int(sliderValue))
         }
     }
     
     @Published private(set) var sliderTitle: String = ""
     
-    private let lazyModelContext: @MainActor () -> (ModelContext?)
+    private let settingsService: SettingsServiceProtocol
      
     // MARK: - Initialisers
     
-    init(lazyModelContext: @MainActor @escaping () -> (ModelContext?)) {
-        self.lazyModelContext = lazyModelContext
+    init(settingsService: SettingsServiceProtocol) {
+        self.settingsService = settingsService
         
         defer {
             setInitialSliderValue()
@@ -58,22 +45,8 @@ final class WashPeriodSetUpViewModel: ObservableObject {
     // MARK: - Private
     
     private func setInitialSliderValue() {
-        let defaultSliderValue = sliderRange.upperBound
-        
-        guard let context = lazyModelContext() else {
-            sliderValue = defaultSliderValue
-            return
-        }
-        
-        var fetchDescriptor = FetchDescriptor<SettingsEntityModel>()
-        fetchDescriptor.includePendingChanges = true
-        
-        do {
-            let settings = try context.fetch(fetchDescriptor).first
-            sliderValue = (settings?.washingPeriod).map { Float($0) } ?? defaultSliderValue
-        } catch {
-            sliderValue = defaultSliderValue
-        }
+        let settings = settingsService.settings
+        sliderValue = (settings?.washingPeriod).map { Float($0) } ?? sliderRange.upperBound
     }
     
     private func sliderTitle(forPeriod period: Int) -> String {
