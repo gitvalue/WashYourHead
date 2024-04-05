@@ -24,7 +24,20 @@ final class WashPeriodSetUpViewModel: ObservableObject {
     @Published var sliderValue: Float = .zero {
         didSet {
             sliderTitle = sliderTitle(forPeriod: Int(sliderValue))
-            settingsService.setWashingPeriod(Int(sliderValue))
+            
+            if isSwitchOn {
+                settingsService.setWashingPeriod(Int(sliderValue))
+            }
+        }
+    }
+    
+    @Published var isSwitchOn: Bool = true {
+        didSet {
+            if isSwitchOn {
+                settingsService.setWashingPeriod(Int(sliderValue))
+            } else {
+                settingsService.setWashingPeriod(nil)
+            }
         }
     }
     
@@ -45,8 +58,13 @@ final class WashPeriodSetUpViewModel: ObservableObject {
     // MARK: - Private
     
     private func setInitialSliderValue() {
-        let settings = settingsService.settings
-        sliderValue = (settings?.washingPeriod).map { Float($0) } ?? sliderRange.upperBound
+        if let settings = settingsService.settings, let washingPeriod = settings.washingPeriod {
+            sliderValue = Float(washingPeriod)
+            isSwitchOn = true
+        } else {
+            sliderValue = 0
+            isSwitchOn = false
+        }
     }
     
     private func sliderTitle(forPeriod period: Int) -> String {

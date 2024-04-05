@@ -10,7 +10,7 @@ import SwiftData
 
 protocol SettingsServiceProtocol: AnyObject {
     var settings: SettingsEntityModel? { get }
-    func setWashingPeriod(_ washingPeriod: Int)
+    func setWashingPeriod(_ washingPeriod: Int?)
 }
 
 final class SettingsService: SettingsServiceProtocol {
@@ -27,7 +27,7 @@ final class SettingsService: SettingsServiceProtocol {
         self.modelContext = modelContext
     }
     
-    func setWashingPeriod(_ washingPeriod: Int) {
+    func setWashingPeriod(_ washingPeriod: Int?) {
         var fetchDescriptor = FetchDescriptor<SettingsEntityModel>()
         fetchDescriptor.includePendingChanges = true
         

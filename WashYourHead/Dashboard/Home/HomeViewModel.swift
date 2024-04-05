@@ -30,15 +30,7 @@ final class HomeViewModel: ObservableObject {
     }
     
     private var washedToday: Bool {
-        if let dateLastWashed {
-            return Calendar.current.isDateInToday(dateLastWashed)
-        } else {
-            return false
-        }
-    }
-    
-    private var dateLastWashed: Date? {
-        return washEventsService.getAllEvents().sorted { $0.date < $1.date }.last?.date
+        return washEventsService.getAllEvents().contains { Calendar.current.isDateInToday($0.date) == true }
     }
     
     private let washEventsService: WashEventsServiceProtocol
@@ -71,34 +63,73 @@ final class HomeViewModel: ObservableObject {
     // MARK: - Private
         
     private func update() {
-        let noHistoryBodyText = "You haven't marked washing yet"
-        
-        guard let dateLastWashed else {
-            body = noHistoryBodyText
-            return
-        }
+        let startOfDay = Calendar.current.startOfDay(for: .now)
+        let dateLastWashed = washEventsService.getAllEvents().sorted {
+            $0.date < $1.date
+        }.map {
+            $0.date
+        }.filter {
+            $0 < startOfDay || Calendar.current.isDate($0, inSameDayAs: startOfDay)
+        }.last
         
         guard let settings = settingsService.settings else {
-            body = noHistoryBodyText
-            return
+            fatalError()
         }
-                
-        // TODO: expired date case
         
-        let nextWashDate = Calendar.current.date(
-            byAdding: .day, 
-            value: settings.washingPeriod,
-            to: dateLastWashed
-        )
+        let scheduledWashes = washEventsService.getAllEvents().sorted {
+            $0.date < $1.date
+        }.filter {
+            .now < $0.date
+        }
         
-        if let nextWashDate {
-            body = "Next wash date — \(dayOfWeekString(from: nextWashDate))"
+        if let washingPeriod = settings.washingPeriod {
+            let nextWashDateByPeriod = dateLastWashed.map {
+                Calendar.current.date(
+                   byAdding: .day,
+                   value: washingPeriod,
+                   to: $0
+               )!
+            }
+            let nextWashDateSheduled = scheduledWashes.first?.date
+            
+            let nextWashDate: Date? = [
+                nextWashDateByPeriod,
+                nextWashDateSheduled
+            ].compactMap {
+                $0
+            }.sorted {
+                $0 < $1
+            }.first
+            
+            if let nextWashDate {
+                if nextWashDate < startOfDay {
+                    if let nextWashDateSheduled {
+                        body = "You should've washed your head on \(dayOfWeekString(from: nextWashDate)). Next wash date — \(dayOfWeekString(from: nextWashDateSheduled))"
+                    } else {
+                        body = "You should've washed your head on \(dayOfWeekString(from: nextWashDate))"
+                    }
+                } else {
+                    body = "Next wash date — \(dayOfWeekString(from: nextWashDate))"
+                }
+            } else {
+                body = "You haven't washed or scheduled head yet"
+            }
         } else {
-            body = noHistoryBodyText
+            if let scheduledWash = scheduledWashes.first {
+                body = "Next wash date — \(dayOfWeekString(from: scheduledWash.date))"
+            } else if let dateLastWashed {
+                body = "You haven't scheduled wash yet. Last washing date — \(dayOfWeekString(from: dateLastWashed))"
+            } else {
+                body = "You haven't scheduled or washed head yet"
+            }
         }
     }
     
     private func dayOfWeekString(from date: Date) -> String {
+        guard Calendar.current.startOfDay(for: .now) != Calendar.current.startOfDay(for: date) else {
+            return "Today"
+        }
+        
         let formatStyle: Date.FormatStyle
         
         if Calendar.current.isDate(.now, equalTo: date, toGranularity: .weekOfMonth) {

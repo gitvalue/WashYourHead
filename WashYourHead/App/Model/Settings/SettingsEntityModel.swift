@@ -9,9 +9,9 @@ import SwiftData
 
 @Model
 final class SettingsEntityModel {
-    let washingPeriod: Int
+    let washingPeriod: Int?
     
-    init(washingPeriod: Int) {
+    init(washingPeriod: Int?) {
         self.washingPeriod = washingPeriod
     }
 }

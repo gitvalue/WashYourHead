@@ -17,10 +17,10 @@ struct WashPeriodSetUpView: View {
             .multilineTextAlignment(.center)
             .padding(.top, 50.0)
             .padding(.horizontal, 16.0)
-        Spacer()
         VStack {
-            Text(viewModel.sliderTitle)
-                .font(.title2)
+            Toggle(isOn: $viewModel.isSwitchOn) {
+                Text(viewModel.sliderTitle)
+            }.padding(.horizontal, 16.0)
             Slider(
                 value: $viewModel.sliderValue,
                 in: viewModel.sliderRange,
@@ -31,7 +31,7 @@ struct WashPeriodSetUpView: View {
                     Text(viewModel.sliderLowerBound)
                 }, maximumValueLabel: {
                     Text(viewModel.sliderUpperBound)
-                }).padding()
+                }).padding(.horizontal, 16.0)
         }
         Spacer()
     }
